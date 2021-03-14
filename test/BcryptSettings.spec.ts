@@ -3,7 +3,7 @@ import {describe} from "mocha";
 
 import {BcryptSettings} from "../src/BcryptSettings";
 
-describe("BcryptSettings", (): void => {
+describe(BcryptSettings.name, (): void => {
   before((): void => {
     BcryptSettings.init(1000);
   });
@@ -14,7 +14,7 @@ describe("BcryptSettings", (): void => {
       expect(instance).to.be.instanceOf(BcryptSettings);
     });
   });
-  describe("get", (): void => {
+  describe(BcryptSettings.get.name, (): void => {
     it("should return only one instance (Singleton Pattern)", (): void => {
       const instanceOne: BcryptSettings = BcryptSettings.get();
       const instanceTwo: BcryptSettings = BcryptSettings.get();

@@ -10,3 +10,5 @@ async function compareAsync(
 
   return compare(secret, hashedSecret);
 }
+
+export {compareAsync};

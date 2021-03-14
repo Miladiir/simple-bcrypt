@@ -4,7 +4,7 @@ import {BcryptSettings} from "../src/BcryptSettings";
 import {Format} from "../src/Format";
 import {hashAsync} from "../src/hashAsync";
 
-describe("hashASync", (): void => {
+describe(hashAsync.name, (): void => {
   before((): void => {
     BcryptSettings.init(1000);
   });

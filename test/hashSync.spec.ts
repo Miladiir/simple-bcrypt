@@ -4,7 +4,7 @@ import {BcryptSettings} from "../src/BcryptSettings";
 import {Format} from "../src/Format";
 import {hashSync} from "../src/hashSync";
 
-describe("hashSync", (): void => {
+describe(hashSync.name, (): void => {
   before((): void => {
     BcryptSettings.init(1000);
   });
