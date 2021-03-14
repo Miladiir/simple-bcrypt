@@ -1,0 +1,14 @@
+# NPM Modules / Dependencies
+node_modules/
+
+# Editors
+.idea/
+
+# Artifacts
+
+## Compiled files
+dist/
+
+## Test output
+.nyc_output/
+coverage/
