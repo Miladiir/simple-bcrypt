@@ -22,15 +22,6 @@ const mcfs: string[] = [
   "$2a$31$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
   "$2a$31$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
   "$2a$31$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
-  "$2b$04$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
-  "$2b$04$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
-  "$2b$04$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
-  "$2b$13$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
-  "$2b$13$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
-  "$2b$13$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
-  "$2b$31$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
-  "$2b$31$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
-  "$2b$31$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
   "$2x$04$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
   "$2x$04$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
   "$2x$04$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
@@ -49,6 +40,15 @@ const mcfs: string[] = [
   "$2y$31$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
   "$2y$31$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
   "$2y$31$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
+  "$2b$04$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
+  "$2b$04$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
+  "$2b$04$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
+  "$2b$13$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
+  "$2b$13$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
+  "$2b$13$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
+  "$2b$31$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
+  "$2b$31$QX2Dw29dcSBM79yVnERqceE6YhZmnzGR8N83QDMoo4QLeiITlM6xC",
+  "$2b$31$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y",
 ];
 const bmcfs: string[] = [
   "JPj8HDuzGMbsZPXZ3X3Mf1ArABgC/5z6cRZNrKrllURZ1JTRlDYj2w==",
@@ -104,7 +104,10 @@ describe("BMCF", (): void => {
       mcfs.forEach((mcf: string, index: number): void => {
         const bmcf: Buffer = encode(mcf);
         const base64Bmcf: string = bmcf.toString("base64");
-        expect(base64Bmcf).to.equal(bmcfs[index]);
+        expect(base64Bmcf).to.equal(
+          bmcfs[index],
+          `Elements at ${index} should match.`,
+        );
       });
     });
   });
@@ -114,7 +117,10 @@ describe("BMCF", (): void => {
       bmcfs.forEach((base64Bmcf: string, index: number): void => {
         const bmcf: Buffer = Buffer.from(base64Bmcf, "base64");
         const computedMcf: string = decode(bmcf);
-        expect(computedMcf).to.equal(mcfs[index]);
+        expect(computedMcf).to.equal(
+          mcfs[index],
+          `Elements at ${index} should match.`,
+        );
       });
     });
   });

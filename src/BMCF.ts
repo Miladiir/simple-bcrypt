@@ -1,5 +1,7 @@
 // tslint:disable
 
+type headerCode = 0x20 | 0x40 | 0x60 | 0x80 | 0xa0;
+
 export function encode(mcf: string): Buffer {
   const match = safeRegex(mcf);
   let headerOctet: number = encodeScheme(match.scheme);
@@ -16,7 +18,7 @@ export function encode(mcf: string): Buffer {
 
 export function decode(bmcf: Buffer) {
   const headerOctet = bmcf.readInt8(0);
-  const scheme = (headerOctet & 0b1110_0000) as 32 | 64 | 96 | 128 | 160;
+  const scheme = (headerOctet & 0b1110_0000) as headerCode;
   const decodedScheme = decodeScheme(scheme);
   const cost = headerOctet & 0b0001_1111;
   const decodedCost = cost < 10 ? "0" + cost : cost.toString();
@@ -30,30 +32,30 @@ export function decode(bmcf: Buffer) {
 function encodeScheme(scheme: "2" | "2a" | "2b" | "2x" | "2y") {
   switch (scheme) {
     case "2":
-      return 0b0010_0000;
+      return 0x20;
     case "2a":
-      return 0b0100_0000;
-    case "2b":
-      return 0b0110_0000;
+      return 0x40;
     case "2x":
-      return 0b1000_0000;
+      return 0x60;
     case "2y":
-      return 0b1010_0000;
+      return 0x80;
+    case "2b":
+      return 0xa0;
   }
 }
 
-function decodeScheme(code: 32 | 64 | 96 | 128 | 160) {
+function decodeScheme(code: headerCode) {
   switch (code) {
-    case 32:
+    case 0x20:
       return "2";
-    case 64:
+    case 0x40:
       return "2a";
-    case 96:
-      return "2b";
-    case 128:
+    case 0x60:
       return "2x";
-    case 160:
+    case 0x80:
       return "2y";
+    case 0xa0:
+      return "2b";
   }
 }
 
