@@ -10,27 +10,27 @@ import {Format} from "./Format";
  * @param outputFormat The desired output format.
  */
 function hashSync(
-  secret: Readonly<string>,
-  outputFormat: Readonly<Format.String>,
+    secret: Readonly<string>,
+    outputFormat: Readonly<Format.String>,
 ): string;
 function hashSync(
-  secret: Readonly<string>,
-  outputFormat: Readonly<Format.Binary>,
+    secret: Readonly<string>,
+    outputFormat: Readonly<Format.Binary>,
 ): Buffer;
 function hashSync(
-  secret: Readonly<string>,
-  outputFormat: Readonly<Format>,
+    secret: Readonly<string>,
+    outputFormat: Readonly<Format>,
 ): string | Buffer {
-  const settings: BcryptSettings = BcryptSettings.get();
-  const hashedSecret: string = bcryptHashSync(secret, settings.saltRounds);
-  switch (outputFormat) {
-    case Format.String:
-      return hashedSecret;
-    case Format.Binary:
-      return encode(hashedSecret);
-    default:
-      throw Error(`Invalid format: ${outputFormat}`);
-  }
+    const settings: BcryptSettings = BcryptSettings.get();
+    const hashedSecret: string = bcryptHashSync(secret, settings.saltRounds);
+    switch (outputFormat) {
+        case Format.String:
+            return hashedSecret;
+        case Format.Binary:
+            return encode(hashedSecret);
+        default:
+            throw Error(`Invalid format: ${outputFormat}`);
+    }
 }
 
 export {hashSync};

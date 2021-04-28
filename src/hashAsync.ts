@@ -10,27 +10,27 @@ import {Format} from "./Format";
  * @param outputFormat The desired output format.
  */
 async function hashAsync(
-  secret: string,
-  outputFormat: Format.String,
+    secret: string,
+    outputFormat: Format.String,
 ): Promise<string>;
 async function hashAsync(
-  secret: string,
-  outputFormat: Format.Binary,
+    secret: string,
+    outputFormat: Format.Binary,
 ): Promise<Buffer>;
 async function hashAsync(
-  secret: string,
-  outputFormat: Format,
+    secret: string,
+    outputFormat: Format,
 ): Promise<string | Buffer> {
-  const settings: BcryptSettings = BcryptSettings.get();
-  const hashedSecret: string = await hash(secret, settings.saltRounds);
-  switch (outputFormat) {
-    case Format.String:
-      return hashedSecret;
-    case Format.Binary:
-      return encode(hashedSecret);
-    default:
-      throw new Error(`Unknown output format: ${outputFormat}`);
-  }
+    const settings: BcryptSettings = BcryptSettings.get();
+    const hashedSecret: string = await hash(secret, settings.saltRounds);
+    switch (outputFormat) {
+        case Format.String:
+            return hashedSecret;
+        case Format.Binary:
+            return encode(hashedSecret);
+        default:
+            throw new Error(`Unknown output format: ${outputFormat}`);
+    }
 }
 
 export {hashAsync};
