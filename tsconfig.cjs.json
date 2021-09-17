@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "outDir": "./lib/cjs",
+        "target": "ES2019",
+        "module": "CommonJS"
+    },
+    "include": ["src"]
+}

@@ -7,7 +7,7 @@ node_modules/
 # Artifacts
 
 ## Compiled files
-dist/
+lib/
 
 ## Test output
 .nyc_output/

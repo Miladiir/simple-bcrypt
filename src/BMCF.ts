@@ -1,5 +1,11 @@
 type headerCode = 0x20 | 0x40 | 0x60 | 0x80 | 0xa0;
 
+export function convert(mcf: string): Buffer;
+export function convert(bmcf: Buffer): string;
+export function convert(input: string | Buffer): string | Buffer {
+    return input instanceof Buffer ? decode(input) : encode(input);
+}
+
 export function encode(mcf: string): Buffer {
     const match = safeRegex(mcf);
     let headerOctet: number = encodeScheme(match.scheme);
@@ -14,7 +20,7 @@ export function encode(mcf: string): Buffer {
     return buffer;
 }
 
-export function decode(bmcf: Buffer) {
+export function decode(bmcf: Buffer): string {
     const headerOctet = bmcf.readInt8(0);
     const scheme = (headerOctet & 0b1110_0000) as headerCode;
     const decodedScheme = decodeScheme(scheme);

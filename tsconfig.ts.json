@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outDir": "./lib/types",
+        "target": "ES2019",
+        "module": "ES2020",
+        "emitDeclarationOnly": true,
+        "declaration": true
+    },
+    "include": ["src"]
+}

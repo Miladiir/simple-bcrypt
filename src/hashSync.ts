@@ -9,9 +9,9 @@ import { Format } from "./Format";
  * @param secret The secret to hash.
  * @param outputFormat The desired output format.
  */
-function hashSync(secret: Readonly<string>, outputFormat: Readonly<Format.String>): string;
-function hashSync(secret: Readonly<string>, outputFormat: Readonly<Format.Binary>): Buffer;
-function hashSync(secret: Readonly<string>, outputFormat: Readonly<Format>): string | Buffer {
+function hashSync(secret: string, outputFormat: Format.String): string;
+function hashSync(secret: string, outputFormat: Format.Binary): Buffer;
+function hashSync(secret: string, outputFormat: Format = Format.String): string | Buffer {
     const settings: BcryptSettings = BcryptSettings.get();
     const hashedSecret: string = bcryptHashSync(secret, settings.saltRounds);
     switch (outputFormat) {

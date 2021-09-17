@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "outDir": "./lib/esm",
+        "target": "ES2019",
+        "module": "ES2020"
+    },
+    "include": ["src"]
+}

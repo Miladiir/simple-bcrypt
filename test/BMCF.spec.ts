@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { describe, it } from "mocha";
 
-import { decode, encode } from "../src/BMCF";
+import { convert, decode, encode } from "../src/";
 
 const mcfs: string[] = [
     "$2$04$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
@@ -116,6 +116,15 @@ describe("BMCF", (): void => {
                 const computedMcf: string = decode(bmcf);
                 expect(computedMcf).to.equal(mcfs[index], `Elements at ${index} should match.`);
             });
+        });
+    });
+
+    describe("convert", (): void => {
+        it("should convert from bmcf to mcf", (): void => {
+            expect(convert(Buffer.from(bmcfs[0]!, "base64"))).to.equal(mcfs[0]);
+        });
+        it("should convert from mcf to bmcf", (): void => {
+            expect(convert(mcfs[0]!).toString("base64")).to.equal(bmcfs[0]);
         });
     });
 });

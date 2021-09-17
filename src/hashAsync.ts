@@ -11,7 +11,7 @@ import { Format } from "./Format";
  */
 async function hashAsync(secret: string, outputFormat: Format.String): Promise<string>;
 async function hashAsync(secret: string, outputFormat: Format.Binary): Promise<Buffer>;
-async function hashAsync(secret: string, outputFormat: Format): Promise<string | Buffer> {
+async function hashAsync(secret: string, outputFormat: Format = Format.String): Promise<string | Buffer> {
     const settings: BcryptSettings = BcryptSettings.get();
     const hashedSecret: string = await hash(secret, settings.saltRounds);
     switch (outputFormat) {
