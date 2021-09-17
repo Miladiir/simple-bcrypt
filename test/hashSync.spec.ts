@@ -1,13 +1,13 @@
-import {expect} from "chai";
+import { expect } from "chai";
 
-import {BcryptSettings} from "../src/BcryptSettings";
-import {Format} from "../src/Format";
-import {hashSync} from "../src/hashSync";
+import { BcryptSettings } from "../src/BcryptSettings";
+import { Format } from "../src/Format";
+import { hashSync } from "../src/hashSync";
 
 describe("hashSync", (): void => {
-
-    before((): void => {
-        BcryptSettings.init(1000);
+    before(async function (): Promise<void> {
+        this.timeout(60000);
+        await BcryptSettings.init(1000);
     });
 
     it("should produce different hashes for the same secret (random salt)", (): void => {
@@ -18,8 +18,6 @@ describe("hashSync", (): void => {
 
         const bufferOne: Buffer = hashSync(input, Format.Binary);
         const bufferTwo: Buffer = hashSync(input, Format.Binary);
-        expect(bufferOne.toString("base64")).to.not.equal(
-            bufferTwo.toString("base64"),
-        );
-    });
+        expect(bufferOne.toString("base64")).to.not.equal(bufferTwo.toString("base64"));
+    }).timeout(10000);
 });

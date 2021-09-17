@@ -1,6 +1,6 @@
-import {compareSync as bcryptCompare} from "bcrypt";
+import { compareSync as bcryptCompare } from "bcrypt";
 
-import {decode} from "./BMCF";
+import { decode } from "./BMCF";
 
 function compareSync(secret: string, hash: string | Buffer): boolean {
     const hashedSecret: string = hash instanceof Buffer ? decode(hash) : hash;
@@ -8,4 +8,4 @@ function compareSync(secret: string, hash: string | Buffer): boolean {
     return bcryptCompare(secret, hashedSecret);
 }
 
-export {compareSync};
+export { compareSync };

@@ -1,7 +1,7 @@
-import {expect} from "chai";
-import {describe, it} from "mocha";
+import { expect } from "chai";
+import { describe, it } from "mocha";
 
-import {decode, encode} from "../src/BMCF";
+import { decode, encode } from "../src/BMCF";
 
 const mcfs: string[] = [
     "$2$04$8NuaM5KWvsvi7blbdav9S.Iu.W.t8a8lCURYwo3XTCUbQSyXO0G7q",
@@ -99,31 +99,22 @@ const bmcfs: string[] = [
 ];
 
 describe("BMCF", (): void => {
-
     describe("encode", (): void => {
-
         it("should be able to encode bcrypt MCF to BMCF", (): void => {
             mcfs.forEach((mcf: string, index: number): void => {
                 const bmcf: Buffer = encode(mcf);
                 const base64Bmcf: string = bmcf.toString("base64");
-                expect(base64Bmcf).to.equal(
-                    bmcfs[index],
-                    `Elements at ${index} should match.`,
-                );
+                expect(base64Bmcf).to.equal(bmcfs[index], `Elements at ${index} should match.`);
             });
         });
     });
 
     describe("decode", (): void => {
-
         it("should be able to decode bcrypt BMCF to MCF", (): void => {
             bmcfs.forEach((base64Bmcf: string, index: number): void => {
                 const bmcf: Buffer = Buffer.from(base64Bmcf, "base64");
                 const computedMcf: string = decode(bmcf);
-                expect(computedMcf).to.equal(
-                    mcfs[index],
-                    `Elements at ${index} should match.`,
-                );
+                expect(computedMcf).to.equal(mcfs[index], `Elements at ${index} should match.`);
             });
         });
     });

@@ -111,10 +111,8 @@ function normalToBcrypt(input: string): string {
     return output;
 }
 
-const CHARS_BCRYPT =
-    "./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-const CHARS_BASE64 =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const CHARS_BCRYPT = "./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const CHARS_BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 const CHARS_BCRYPT_REVERSE: Record<string, number> = {};
 const CHARS_BASE64_REVERSE: Record<string, number> = {};

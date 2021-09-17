@@ -1,17 +1,11 @@
 {
-  "parallel": false,
-  "check-leaks": true,
-  "exit": true,
-  "extension": [
-    "ts"
-  ],
-  "recursive": true,
-  "spec": [
-    "test"
-  ],
-  "forbid-only": true,
-  "forbid-pending": true,
-  "require": [
-    "ts-node/register"
-  ]
+    "parallel": true,
+    "check-leaks": true,
+    "exit": true,
+    "extension": ["ts"],
+    "recursive": true,
+    "spec": ["test"],
+    "forbid-only": true,
+    "forbid-pending": true,
+    "require": ["ts-node/register"]
 }

@@ -1,8 +1,9 @@
+import { hash } from "bcrypt";
+import { performance } from "perf_hooks";
 /**
  * Automatically determined save and sane default settings for bcrypt.
  */
 export class BcryptSettings {
-
     /**
      * Get sane bcrypt settings that respect your preferences.
      */
@@ -14,11 +15,22 @@ export class BcryptSettings {
         return BcryptSettings.instance;
     }
 
-    public static async init(targetTime: number): Promise<void> {
-        BcryptSettings.instance = new BcryptSettings(targetTime, 10);
-        await new Promise((resolve: (value?: unknown) => void): void => {
-            setTimeout(resolve, 1);
-        });
+    public static async init(targetTime: number = 500): Promise<void> {
+        let rounds = 10;
+        let actualTime: number = 0;
+        for (; actualTime <= targetTime; rounds++) {
+            const start = performance.now();
+            await hash("p4ssw0rd", rounds);
+            const end = performance.now();
+            actualTime = end - start;
+        }
+        if (targetTime * 1.5 < actualTime) {
+            rounds--;
+        }
+        if (rounds < 10) {
+            rounds = 10;
+        }
+        BcryptSettings.instance = new BcryptSettings(targetTime, rounds);
     }
 
     private static instance?: BcryptSettings;

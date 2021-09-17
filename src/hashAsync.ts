@@ -1,26 +1,17 @@
-import {hash} from "bcrypt";
+import { hash } from "bcrypt";
 
-import {BcryptSettings} from "./BcryptSettings";
-import {encode} from "./BMCF";
-import {Format} from "./Format";
+import { BcryptSettings } from "./BcryptSettings";
+import { encode } from "./BMCF";
+import { Format } from "./Format";
 
 /**
  * Hash asynchronously using auto generated defaults.
  * @param secret The secret to hash.
  * @param outputFormat The desired output format.
  */
-async function hashAsync(
-    secret: string,
-    outputFormat: Format.String,
-): Promise<string>;
-async function hashAsync(
-    secret: string,
-    outputFormat: Format.Binary,
-): Promise<Buffer>;
-async function hashAsync(
-    secret: string,
-    outputFormat: Format,
-): Promise<string | Buffer> {
+async function hashAsync(secret: string, outputFormat: Format.String): Promise<string>;
+async function hashAsync(secret: string, outputFormat: Format.Binary): Promise<Buffer>;
+async function hashAsync(secret: string, outputFormat: Format): Promise<string | Buffer> {
     const settings: BcryptSettings = BcryptSettings.get();
     const hashedSecret: string = await hash(secret, settings.saltRounds);
     switch (outputFormat) {
@@ -33,4 +24,4 @@ async function hashAsync(
     }
 }
 
-export {hashAsync};
+export { hashAsync };
