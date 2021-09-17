@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/miladiir/simple-bcrypt-nodejs.git"
+        "url": "git+https://github.com/miladiir/simple-bcrypt.git"
     },
     "keywords": [
         "bcrypt",
@@ -24,9 +24,9 @@
     "author": "Oliver Conzen",
     "license": "Unlicense",
     "bugs": {
-        "url": "https://github.com/miladiir/simple-bcrypt-nodejs/issues"
+        "url": "https://github.com/miladiir/simple-bcrypt/issues"
     },
-    "homepage": "https://github.com/miladiir/simple-bcrypt-nodejs#readme",
+    "homepage": "https://github.com/miladiir/simple-bcrypt#readme",
     "devDependencies": {
         "@types/bcrypt": "^5.0.0",
         "@types/chai": "^4.2.21",
@@ -42,5 +42,7 @@
     "dependencies": {
         "bcrypt": "^5.0.1"
     },
-    "files": ["lib"]
+    "files": [
+        "lib"
+    ]
 }
