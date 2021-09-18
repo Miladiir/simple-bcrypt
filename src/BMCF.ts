@@ -64,37 +64,18 @@ function decodeScheme(code: headerCode) {
     }
 }
 
-function safeRegex(input: string) {
+type DestructuredMCF = { scheme: "2" | "2a" | "2b" | "2x" | "2y"; cost: string; salt: string; digest: string };
+function safeRegex(input: string): DestructuredMCF {
     const regex: RegExp = new RegExp(
         "^[$](?<scheme>2[abxy]?)[$](?<cost>(0[4-9]|[12][0-9]|3[01]))[$]((?<salt>[./0-9a-zA-Z]{22})(?<digest>[./0-9a-zA-Z]{31}))$",
     );
     const match: RegExpMatchArray | null = input.match(regex);
-    if (match === null || match.groups === undefined) {
+    if (match === null) {
         throw Error();
     }
-    const scheme = match.groups["scheme"] as "2" | "2a" | "2b" | "2x" | "2y";
-    if (scheme === undefined || scheme.length === 0 || scheme.length > 2) {
-        throw Error();
-    }
-    const cost = Number(match.groups["cost"]);
-    if (!Number.isFinite(cost) || cost < 4 || cost > 31) {
-        throw Error();
-    }
-    const salt = match.groups["salt"];
-    if (salt === undefined || salt.length !== 22) {
-        throw Error();
-    }
-    const digest = match.groups["digest"];
-    if (digest === undefined || digest.length !== 31) {
-        throw Error();
-    }
-
-    return {
-        scheme,
-        cost,
-        salt,
-        digest,
-    };
+    // If we reach this, the regex has done all the work for us. No more validation necessary.
+    const { scheme, cost, salt, digest } = match.groups!;
+    return { scheme, cost, salt, digest } as DestructuredMCF;
 }
 
 function bcryptToNormal(input: string): string {

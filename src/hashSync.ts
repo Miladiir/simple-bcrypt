@@ -9,7 +9,7 @@ import { Format } from "./Format";
  * @param secret The secret to hash.
  * @param outputFormat The desired output format.
  */
-function hashSync(secret: string, outputFormat: Format.String): string;
+function hashSync(secret: string, outputFormat?: Format.String): string;
 function hashSync(secret: string, outputFormat: Format.Binary): Buffer;
 function hashSync(secret: string, outputFormat: Format = Format.String): string | Buffer {
     const settings: BcryptSettings = BcryptSettings.get();

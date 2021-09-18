@@ -9,7 +9,7 @@ import { Format } from "./Format";
  * @param secret The secret to hash.
  * @param outputFormat The desired output format.
  */
-async function hashAsync(secret: string, outputFormat: Format.String): Promise<string>;
+async function hashAsync(secret: string, outputFormat?: Format.String): Promise<string>;
 async function hashAsync(secret: string, outputFormat: Format.Binary): Promise<Buffer>;
 async function hashAsync(secret: string, outputFormat: Format = Format.String): Promise<string | Buffer> {
     const settings: BcryptSettings = BcryptSettings.get();

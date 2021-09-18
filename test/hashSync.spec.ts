@@ -1,13 +1,14 @@
 import { expect } from "chai";
-
-import { BcryptSettings } from "../src/BcryptSettings";
-import { Format } from "../src/Format";
-import { hashSync } from "../src/hashSync";
+import { BcryptSettings, Format, hashSync } from "../src";
 
 describe("hashSync", (): void => {
     before(async function (): Promise<void> {
-        this.timeout(60000);
-        await BcryptSettings.init(1000);
+        this.timeout(10000);
+        await BcryptSettings.init(0);
+    });
+
+    it("should default to format string", (): void => {
+        expect(hashSync("test")).to.be.a.string;
     });
 
     it("should produce different hashes for the same secret (random salt)", (): void => {
@@ -19,5 +20,10 @@ describe("hashSync", (): void => {
         const bufferOne: Buffer = hashSync(input, Format.Binary);
         const bufferTwo: Buffer = hashSync(input, Format.Binary);
         expect(bufferOne.toString("base64")).to.not.equal(bufferTwo.toString("base64"));
-    }).timeout(10000);
+    }).timeout(20000);
+
+    it("should throw for wrong format", (): void => {
+        //@ts-expect-error
+        expect(() => hashSync("123", "hujiko")).to.throw();
+    });
 });

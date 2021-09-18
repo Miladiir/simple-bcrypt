@@ -1,7 +1,5 @@
 import { expect } from "chai";
-
-import { encode } from "../src/BMCF";
-import { compareAsync } from "../src/compareAsync";
+import { compareAsync, encode } from "../src";
 
 describe("compareAsync", (): void => {
     it("should return true for correct hash (string)", async (): Promise<void> => {

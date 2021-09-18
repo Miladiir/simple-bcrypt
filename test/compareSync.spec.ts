@@ -1,7 +1,5 @@
 import { expect } from "chai";
-
-import { compareSync } from "../src/compareSync";
-import { encode } from "../src/BMCF";
+import { compareSync, encode } from "../src";
 
 describe("compareSync", (): void => {
     it("should return true for correct hash (string)", (): void => {

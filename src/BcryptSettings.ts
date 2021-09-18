@@ -16,9 +16,10 @@ export class BcryptSettings {
     }
 
     public static async init(targetTime: number = 500): Promise<void> {
-        let rounds = 10;
+        let rounds = 0;
         let actualTime: number = 0;
-        for (; actualTime <= targetTime; rounds++) {
+        for (let newRounds = rounds; actualTime <= targetTime; newRounds++) {
+            rounds = newRounds;
             const start = performance.now();
             await hash("p4ssw0rd", rounds);
             const end = performance.now();

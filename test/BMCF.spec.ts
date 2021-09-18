@@ -107,6 +107,13 @@ describe("BMCF", (): void => {
                 expect(base64Bmcf).to.equal(bmcfs[index], `Elements at ${index} should match.`);
             });
         });
+        it("should throw on invalid input", (): void => {
+            expect(() => encode("")).to.throw();
+            expect(() => encode("$2aa$31$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y")).to.throw();
+            expect(() => encode("$2a$32$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y")).to.throw();
+            expect(() => encode("$2a$31$pjK6TtKKAHWzG7f2850HbIeeWKf73yeuaVOhZKOm.RY6z5z7/FCr0y")).to.throw();
+            expect(() => encode("$2a$31$pjK6TtKKAHWzG7f850HbIeeWKf73yeuaVOhZKOm.R1Y6z5z7/FCr0y")).to.throw();
+        });
     });
 
     describe("decode", (): void => {
