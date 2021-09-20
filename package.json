@@ -1,6 +1,6 @@
 {
     "name": "simple-bcrypt",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Simplify handling and hashing of passwords with bcrypt.",
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
