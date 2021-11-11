@@ -5,7 +5,7 @@ Hash passwords with bcrypt using secure settings. CommonJS and EcmaScript module
 ## Installation
 
 ```
-npm i -S simple-brypt
+npm i -S simple-bcrypt
 ```
 
 ## Usage
